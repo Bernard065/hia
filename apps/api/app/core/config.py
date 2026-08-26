@@ -1,7 +1,11 @@
+"""Application settings loaded from environment variables."""
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    """Configuration values for the API service."""
+
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     APP_NAME: str = "HIA API"

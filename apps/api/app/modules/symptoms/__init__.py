@@ -1,0 +1,1 @@
+"""Symptoms API module."""

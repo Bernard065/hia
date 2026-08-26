@@ -1,0 +1,1 @@
+"""Medications API module."""
