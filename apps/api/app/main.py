@@ -1,3 +1,5 @@
+"""FastAPI application entry point."""
+
 from fastapi import FastAPI
 
 from app.core.config import settings
@@ -31,4 +33,5 @@ for r in routers:
 
 @app.get("/health", tags=["health"])
 def health():
+    """Return the API health status."""
     return {"status": "ok", "env": settings.ENV}
