@@ -1,4 +1,5 @@
 """Password hashing and JSON Web Token utilities."""
+
 from datetime import UTC, datetime, timedelta
 
 from jose import jwt

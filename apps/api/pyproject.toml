@@ -2,8 +2,8 @@
 line-length = 100
 target-version = "py311"
 
-[tool.pylint.MASTER]
+[tool.pylint.main]
 init-hook = 'import sys; sys.path.insert(0, "apps/api")'
 
-[tool.pylint.TYPECHECK]
+[tool.pylint.typecheck]
 ignored-modules = ["alembic.context"]
