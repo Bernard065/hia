@@ -2,6 +2,7 @@
 
 from fastapi import FastAPI
 
+from app.core.api import configure_api
 from app.core.config import settings
 from app.modules.alerts.router import router as alerts_router
 from app.modules.assistant.router import router as assistant_router
@@ -19,19 +20,32 @@ from app.modules.search.router import router as search_router
 from app.modules.symptoms.router import router as symptoms_router
 from app.modules.timeline.router import router as timeline_router
 
-app = FastAPI(title=settings.APP_NAME)
+app = FastAPI(title=settings.APP_NAME, version="1.0.0")
+configure_api(app)
 
 routers = [
-    auth_router, patients_router, reports_router, laboratory_router,
-    symptoms_router, medications_router, timeline_router, monitoring_router,
-    alerts_router, insights_router, assistant_router, search_router,
-    rag_router, safety_router, audit_router,
+    auth_router,
+    patients_router,
+    reports_router,
+    laboratory_router,
+    symptoms_router,
+    medications_router,
+    timeline_router,
+    monitoring_router,
+    alerts_router,
+    insights_router,
+    assistant_router,
+    search_router,
+    rag_router,
+    safety_router,
+    audit_router,
 ]
-for r in routers:
-    app.include_router(r, prefix="/v1")
+
+for router in routers:
+    app.include_router(router, prefix="/v1")
 
 
 @app.get("/health", tags=["health"])
-def health():
-    """Return the API health status."""
+def health() -> dict[str, str]:
+    """Return the application health status."""
     return {"status": "ok", "env": settings.ENV}
